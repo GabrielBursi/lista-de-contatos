@@ -33,6 +33,10 @@ function App() {
     nomeRef.current.focus()
   }
 
+  function limparLista(){
+    setListaContato([])
+  }
+
   return (
     <>
       <h1>Lista de contatos</h1>
@@ -46,6 +50,7 @@ function App() {
         <input type="tel" ref={telRef} required placeholder="(xx) xxxxx-xxxx" onChange={definirTel} value={contato.tel}></input>
       </div>
       <button onClick={adicionarContato}>Adicionar contato</button>
+      <button onClick={limparLista}>Limpar Lista</button>
       <hr/>
       <ListaDeContato lista={listaContato}/>
     </>
