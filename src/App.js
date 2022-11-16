@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { v4 as id } from "uuid";
 
 function App() {
@@ -15,6 +15,9 @@ function App() {
   }
 
   function adicionarContato(){
+
+    if(contato.nome === '' || contato.tel === '') return
+
     setListaContato([...listaContato,contato])
   }
 
@@ -28,7 +31,7 @@ function App() {
       </div>
       <div>
         <label>Telefone:</label>
-        <input type="number" onChange={definirTel}></input>
+        <input type="tel" required placeholder="(xx) xxxxx-xxxx" onChange={definirTel}></input>
       </div>
       <button onClick={adicionarContato}>Adicionar contato</button>
       <hr/>
