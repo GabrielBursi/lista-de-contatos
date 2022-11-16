@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { v4 as id } from "uuid";
+import ListaDeContato from './components/ListaDeContato';
 
 function App() {
 
@@ -35,11 +35,7 @@ function App() {
       </div>
       <button onClick={adicionarContato}>Adicionar contato</button>
       <hr/>
-      {listaContato.map(ct => (
-        <ul>
-          <li key={id()}>Nome: {ct.nome} Telefone: {ct.tel}</li>
-        </ul>
-      ))}
+      <ListaDeContato lista={listaContato}/>
     </>
   );
 }
