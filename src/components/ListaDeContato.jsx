@@ -1,12 +1,7 @@
-import { v4 as id } from "uuid";
+function ListaDeContato({nome, tel, remover, id}) {
 
-function ListaDeContato({lista}) {
     return (
-        <ul>
-            {lista.map(ct => (
-                <li key={id()}>Nome: {ct.nome} - Telefone: {ct.tel}</li>
-            ))}
-        </ul>
+        <li>{nome} - {tel} <button onClick={()=>remover(id)}>Excluir Contato</button></li>
     );
 }
 

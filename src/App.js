@@ -1,9 +1,10 @@
 import React, { useState,useRef } from 'react';
+import { v4 as cod } from "uuid";
 import ListaDeContato from './components/ListaDeContato';
 
 function App() {
 
-  const [contato, setContato] = useState({nome: '', tel: ''});
+  const [contato, setContato] = useState({nome: '', tel: '', id:''});
   const [listaContato, setListaContato] = useState([]);
 
   const nomeRef = useRef();
@@ -27,7 +28,7 @@ function App() {
       return
     }
 
-    setListaContato([...listaContato,contato])
+    setListaContato([...listaContato,{...contato, id: cod()}])
 
     setContato({nome:'', tel:''})
     nomeRef.current.focus()
@@ -35,6 +36,11 @@ function App() {
 
   function limparLista(){
     setListaContato([])
+  }
+
+  function removerContato(idExcluido){
+    const listaAtualizada = listaContato.filter(ct => ct.id !== idExcluido)
+    setListaContato(listaAtualizada)
   }
 
   return (
@@ -52,7 +58,11 @@ function App() {
       <button onClick={adicionarContato}>Adicionar contato</button>
       <button onClick={limparLista}>Limpar Lista</button>
       <hr/>
-      <ListaDeContato lista={listaContato}/>
+      <ul>
+        {listaContato.map(ct => {
+            return <ListaDeContato key={ct.id} id={ct.id} nome={ct.nome} tel={ct.tel} remover={removerContato}/>
+        })}
+      </ul>
     </>
   );
 }
